@@ -1,3 +1,4 @@
 --require test/helper
 --ui tdd
 --timeout 30s
+--reporter nyan

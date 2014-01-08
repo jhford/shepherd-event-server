@@ -24,6 +24,10 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 27017, host: 27017
 
     # allow symlinks in shared folders
+    # The recipes that we depend on depend on a newer version
+    # of Chef than is installed in the base box
+    config.omnibus.chef_version = "11.4.0"
+
     config.vm.provider "virtualbox" do |v|
       v.customize [
         "setextradata",

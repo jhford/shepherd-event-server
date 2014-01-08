@@ -11,10 +11,11 @@ You need:
   - bundler
   - vagrant
 
-Install the berkshelf plugin:
+Install the berkshelf and omnibus plugin:
 
 ```sh
 vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-omnibus
 ```
 
 ```sh
