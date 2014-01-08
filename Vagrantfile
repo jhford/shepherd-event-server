@@ -8,8 +8,13 @@ Vagrant.configure("2") do |config|
     # Every Vagrant virtual environment requires a box to build off of.
     config.vm.box = "bugzilla-oct21"
     config.vm.box_url = "https://dl.dropboxusercontent.com/u/26058666/bugzilla.box"
-    config.vm.network :private_network, ip: "172.16.25.22"
+    config.vm.network :private_network, ip: "172.16.25.22", mac: '0800274E39AB'
     config.vm.network "forwarded_port", guest: 80, host: 8080
+
+    config.vm.provider "virtualbox" do |v|
+        v.name = "Sheppherd bugzilla"
+        v.customize ["modifyvm", :id, "--macaddress2", "0800274E39AB"]
+    end
   end
 
   config.vm.define "node" do |config|
@@ -23,12 +28,14 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 60001, host: 60001
     config.vm.network "forwarded_port", guest: 27017, host: 27017
 
-    # allow symlinks in shared folders
     # The recipes that we depend on depend on a newer version
     # of Chef than is installed in the base box
     config.omnibus.chef_version = "11.4.0"
 
     config.vm.provider "virtualbox" do |v|
+      v.name = "Sheppherd node"
+      v.customize ["modifyvm", :id, "--macaddress2", "0800278746D4"]
+      # allow symlinks in shared folders
       v.customize [
         "setextradata",
         :id,
