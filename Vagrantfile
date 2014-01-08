@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
       ]
     end
 
+
     # The path to the Berksfile to use with Vagrant Berkshelf
     config.berkshelf.berksfile_path = "./Berksfile"
 
@@ -55,7 +56,7 @@ Vagrant.configure("2") do |config|
       chef.json = {
         :mongodb => {},
         :nodejs => {
-          :install_method => 'package',
+          :install_method => 'source',
           :version => '0.10.20'
         }
       }
